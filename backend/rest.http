@@ -1,0 +1,71 @@
+
+
+###
+POST http://localhost:4000/user-api/register
+Content-Type: application/json
+
+{
+    "username": "vishnu",
+    "password": "09",
+    "email": "vardhan@mail.com"
+}
+
+###
+get http://localhost:4000/user-api/thoughts
+
+###
+POST http://localhost:4000/user-api/login
+Content-Type: application/json
+
+{
+    "username": "vishnuvardhan.09",
+    "password": "12345678"
+}
+
+###
+POST http://localhost:4000/user-api/create-thought
+Content-Type: application/json
+
+{
+    "comments": [],
+    "dateOfCreation" : "Sat Jan 18 2025 15:16:36 GMT+0530 (India Standard Time) {}",
+    "dateOfModification" : "Sat Jan 18 2025 15:16:36 GMT+0530 (India Standard Time) {}",
+    "description": "hello",
+    "likes" : 0,
+    "postImage": "",
+    "status" : true,
+    "thoughtId" : 1737193596010,
+    "username" : "vishnuvardhan.09"
+}
+
+###
+DELETE http://localhost:4000/user-api/delete-users
+
+###
+POST http://localhost:4000/user-api/add-comment/1
+Content-Type: application/json
+
+{
+    "username":"vv.09",
+    "comment": "Great"
+}
+
+###
+POST http://localhost:4000/user-api/like-thought/1
+Content-Type: application/json
+
+{
+    "username":"vishnuvardhan.09"
+}
+
+
+###
+POST http://localhost:4000/user-api/unlike-thought/1
+Content-Type: application/json
+
+{
+    "username":"vishnuvardhan.09"
+}
+
+###
+GET http://localhost:4000/user-api/get-thought/1737195432511

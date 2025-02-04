@@ -1,0 +1,128 @@
+/* CreateThought Container */
+.create-thought-container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Title */
+.create-thought-container h1 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Form */
+.create-thought-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Form Group */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Label */
+.thought-description {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+/* Textarea */
+.description-text {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  resize: vertical;
+  min-height: 100px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.description-text:focus {
+  border-color: #007bff;
+}
+
+/* Error Text */
+.error-text {
+  font-size: 0.9rem;
+  color: #e63946;
+}
+
+/* File Input */
+.form-control {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.form-control:disabled {
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+}
+
+/* Uploading Text */
+.uploading-text {
+  color: #ff6347;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+/* Submit Button */
+.btn-primary {
+  padding: 12px 18px;
+  background-color: #ff4a57;
+  color: #fff;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 20px;
+}
+
+.btn-primary:disabled {
+  background-color: #7d8b8c;
+  cursor: not-allowed;
+}
+
+.btn-primary:hover:enabled {
+  background-color: #ab3039;
+  transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .create-thought-container {
+    padding: 15px;
+  }
+
+  .create-thought-container h1 {
+    font-size: 1.5rem;
+  }
+
+  .description-text {
+    font-size: 0.95rem;
+  }
+
+  .btn-primary {
+    font-size: 1rem;
+  }
+}

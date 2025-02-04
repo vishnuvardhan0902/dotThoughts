@@ -1,0 +1,276 @@
+/* General Thought Card Styles */
+.thought {
+  border: 1px solid #eaeaea;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 70vh;
+  width: 90%;
+  max-width: 750px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #ffffff;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.thought:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Thought Content */
+.thought-content {
+  height: 90%;
+  overflow: hidden;
+}
+
+.thought-thumbnail {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.thought:hover .thought-thumbnail {
+  transform: scale(1.05);
+}
+
+/* Footer with Grid Layout */
+.thought-footer {
+  display: grid;
+  grid-template-columns: auto 1fr; /* User info + interactions */
+  align-items: center;
+  padding: 15px 20px;
+  gap: 20px;
+  border-top: 1px solid #eaeaea;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile-pic {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border: 2px solid #ff4a57;
+}
+
+.user-name {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Interaction Buttons */
+.thought-interactions {
+  display: grid;
+  grid-template-columns: repeat(3, auto); /* Equal space for buttons */
+  justify-content: end;
+  gap: 15px;
+}
+
+.thought-interaction-btn {
+  border: none;
+  background: none;
+  font-size: 1rem;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.delete-btn{
+  margin-left: 8px;
+}
+
+.thought-interaction-btn:hover {
+  color: #ff4a57;
+  transform: scale(1.1);
+}
+
+.like-btn:hover {
+  color: #e63946;
+}
+
+.comment-btn:hover {
+  color: #007bff;
+}
+
+.share-btn:hover {
+  color: #00c851;
+}
+
+/* Description Section */
+.thought-description,
+.description-without-img {
+  font-size: 1rem;
+  color: #555;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f9f9f9;
+  padding: 15px 20px;
+  border-top: 1px solid #eaeaea;
+}
+
+.description-text {
+  line-height: 1.6;
+  color: #666;
+}
+
+/* Popup Styles */
+.thought-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 500px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+  overflow: hidden;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Popup Header */
+.thought-popup-header {
+  padding: 15px 20px;
+  background: #585657;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.thought-popup-header button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* Popup Body */
+.thought-popup-body {
+  padding: 20px;
+  max-height: 400px; /* Ensure scrollable */
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.thought-popup-body::-webkit-scrollbar {
+  width: 5px;
+}
+
+.thought-popup-body::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+
+/* Comment Input Section */
+.thought-comment-input {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.thought-comment-input input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.add-comment-btn {
+  padding: 8px 12px;
+  margin-left: 10px;
+  background: #ff4a57;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.add-comment-btn:hover {
+  background: #6a040b;
+}
+
+/* Comment List */
+.thought-comment-list {
+  max-height: 200px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.thought-comment-list::-webkit-scrollbar {
+  width: 5px;
+}
+
+.thought-comment-list::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+
+/* Overlay */
+.thought-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+/* Prevent body scroll */
+.no-scroll {
+  overflow: hidden;
+  height: 100%;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .thought-footer {
+    grid-template-columns: 1fr; /* Stack rows */
+    text-align: center;
+  }
+
+  .user-info {
+    justify-content: center;
+  }
+
+  .thought-interactions {
+    justify-content: center;
+  }
+
+  .profile-pic {
+    width: 40px;
+    height: 40px;
+  }
+
+  .user-name {
+    font-size: 1rem;
+  }
+
+  .thought-interaction-btn {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .thought-footer {
+    gap: 10px;
+  }
+
+  .thought-interaction-btn {
+    font-size: 0.8rem;
+  }
+}
+

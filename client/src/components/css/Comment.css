@@ -1,0 +1,44 @@
+.comment {
+    gap: 12px;
+    margin: 12px 0;
+    padding: 8px 0;
+    border-bottom: 1px solid #eaeaea; /* Optional divider between comments */
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ccc; /* Placeholder color for avatar */
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.user-info {
+    display: flex;
+    font-family: Arial, sans-serif;
+    width: 100%;
+}
+
+.name {
+    font-size: 0.95rem;
+    font-weight: bold;
+    color: #262626;
+    margin: 0;
+}
+
+.content {
+    display: flex;
+    align-content: flex-start;
+    font-size: 0.9rem;
+    color: #555;
+    margin: 4px 0 0 0;
+    margin-left: 3.5rem;
+    line-height: 1.4;
+}
+
+.time {
+    font-size: 0.75rem;
+    color: #999;
+    margin-top: 4px;
+}
