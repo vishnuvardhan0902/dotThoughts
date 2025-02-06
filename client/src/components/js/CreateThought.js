@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from './context';
-import { axiosWithToken } from '../../axiosWithToken';
 import axios from 'axios';
 import '../css/CreateThought.css'; // Import the updated CSS
 
