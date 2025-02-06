@@ -24,7 +24,7 @@ function EditThought() {
   useEffect(() => {
     async function fetchThought() {
       try {
-        const res = await axios.get(`http://localhost:4000/user-api/get-thought/${thoughtId}`);
+        const res = await axios.get(`https://dotthoughts-backend.onrender.com/user-api/get-thought/${thoughtId}`);
         setExistingThought(res.data);
         setValue('description', res.data.description);  // Set description to the form
         setUploadedUrl(res.data.postImage || '');  // Set uploaded URL if available
@@ -94,7 +94,7 @@ function EditThought() {
 
     setIsSubmitting(true);
     try {
-      const res = await axios.put('http://localhost:4000/user-api/edit-thought', thoughtData);
+      const res = await axios.put('https://dotthoughts-backend.onrender.com/user-api/edit-thought', thoughtData);
       console.log(res);
       alert('Thought updated successfully!');
       navigate('/');

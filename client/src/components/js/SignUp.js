@@ -16,7 +16,7 @@ function SignUp() {
       console.log(userData);
       
       const response = await axios.post(
-        'http://localhost:4000/user-api/signup',
+        'https://dotthoughts-backend.onrender.com/user-api/signup',
         userData
       );
 

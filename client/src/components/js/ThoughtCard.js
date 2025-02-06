@@ -29,7 +29,7 @@ function ThoughtCard({
   useEffect(() => {
     async function fetchComments() {
       try {
-        const res = await axiosWithToken.get(`http://localhost:4000/user-api/get-comments/${thoughtId}`);
+        const res = await axiosWithToken.get(`https://dotthoughts-backend.onrender.com/user-api/get-comments/${thoughtId}`);
         setCommentList(res.data.comments);
       } catch (err) {
         console.error('Error fetching comments:', err);
@@ -53,7 +53,7 @@ function ThoughtCard({
     }
 
     if (isLiked) {
-      await axiosWithToken.post(`http://localhost:4000/user-api/unlike-thought/${thoughtId}`, {
+      await axiosWithToken.post(`https://dotthoughts-backend.onrender.com/user-api/unlike-thought/${thoughtId}`, {
         username: user.username,
       });
       
@@ -65,7 +65,7 @@ function ThoughtCard({
         likedThoughtsId: prevUser.likedThoughtsId.filter((id) => id !== thoughtId),
       }));
     } else {
-      await axiosWithToken.post(`http://localhost:4000/user-api/like-thought/${thoughtId}`, {
+      await axiosWithToken.post(`https://dotthoughts-backend.onrender.com/user-api/like-thought/${thoughtId}`, {
         username: user.username,
       });
       // console.log(user)
@@ -88,7 +88,7 @@ function ThoughtCard({
       setCommentList((prev) => [...prev, newCommentObj]);
 
       try {
-        await axiosWithToken.post(`http://localhost:4000/user-api/add-comment/${thoughtId}`, newCommentObj);
+        await axiosWithToken.post(`https://dotthoughts-backend.onrender.com/user-api/add-comment/${thoughtId}`, newCommentObj);
         setNewComment('');
       } catch (err) {
         console.error('Error adding comment:', err);
@@ -102,7 +102,7 @@ function ThoughtCard({
 
   async function handleDelete() {
     try {
-      const res = await axiosWithToken.delete(`http://localhost:4000/user-api/delete-thought/${thoughtId}`);
+      const res = await axiosWithToken.delete(`https://dotthoughts-backend.onrender.com/user-api/delete-thought/${thoughtId}`);
       console.log(res.data);
       onDelete(); // Call onDelete prop when the thought is deleted
     } catch (err) {

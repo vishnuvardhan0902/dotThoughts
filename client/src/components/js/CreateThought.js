@@ -73,7 +73,7 @@ function CreateThought() {
     console.log(thoughtData)
     setIsSubmitting(true);
     try {
-      const res = await axios.post('http://localhost:4000/user-api/create-thought', thoughtData);
+      const res = await axios.post('https://dotthoughts-backend.onrender.com/user-api/create-thought', thoughtData);
       console.log(res)
       alert('Thought created successfully!');
       navigate('/');

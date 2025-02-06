@@ -14,7 +14,7 @@ function SignIn() {
   async function handleLogin(userCredentials) {
     try {
       const response = await axios.post(
-        "http://localhost:4000/user-api/login",
+        "https://dotthoughts-backend.onrender.com/user-api/login",
         userCredentials
       );
 
@@ -24,7 +24,7 @@ function SignIn() {
       } else {
         
         try{
-          const res = await axios.get(`http://localhost:4000/user-api/user/${userCredentials.username}`);
+          const res = await axios.get(`https://dotthoughts-backend.onrender.com/user-api/user/${userCredentials.username}`);
           setUser(res.data.user);
           // Save token and user info
         localStorage.setItem("token", response.data.token);

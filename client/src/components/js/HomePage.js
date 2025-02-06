@@ -10,7 +10,7 @@ function HomePage() {
   useEffect(() => {
     const fetchThoughts = async () => {
       try {
-        const response = await fetch('http://localhost:4000/user-api/thoughts');
+        const response = await fetch('https://dotthoughts-backend.onrender.com/user-api/thoughts');
         const data = await response.json();
 
         const mappedThoughts = data['thoughts'].map((outerItem) => ({
