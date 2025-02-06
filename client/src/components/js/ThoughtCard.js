@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Link,useNavigate } from 'react-router-dom';
 import '../css/ThoughtCard.css'
 import { UserContext } from './context';
-import { axiosWithToken } from '../../axiosWithToken';
+// import { axiosWithToken } from '../../axiosWithToken';
 function ThoughtCard({
   thoughtId,
   userProfile,
@@ -29,7 +29,7 @@ function ThoughtCard({
   useEffect(() => {
     async function fetchComments() {
       try {
-        const res = await axiosWithToken.get(`https://dotthoughts-backend.onrender.com/user-api/get-comments/${thoughtId}`);
+        const res = await axios.get(`https://dotthoughts-backend.onrender.com/user-api/get-comments/${thoughtId}`);
         setCommentList(res.data.comments);
       } catch (err) {
         console.error('Error fetching comments:', err);
@@ -53,7 +53,7 @@ function ThoughtCard({
     }
 
     if (isLiked) {
-      await axiosWithToken.post(`https://dotthoughts-backend.onrender.com/user-api/unlike-thought/${thoughtId}`, {
+      await axios.post(`https://dotthoughts-backend.onrender.com/user-api/unlike-thought/${thoughtId}`, {
         username: user.username,
       });
       
@@ -65,7 +65,7 @@ function ThoughtCard({
         likedThoughtsId: prevUser.likedThoughtsId.filter((id) => id !== thoughtId),
       }));
     } else {
-      await axiosWithToken.post(`https://dotthoughts-backend.onrender.com/user-api/like-thought/${thoughtId}`, {
+      await axios.post(`https://dotthoughts-backend.onrender.com/user-api/like-thought/${thoughtId}`, {
         username: user.username,
       });
       // console.log(user)
@@ -88,7 +88,7 @@ function ThoughtCard({
       setCommentList((prev) => [...prev, newCommentObj]);
 
       try {
-        await axiosWithToken.post(`https://dotthoughts-backend.onrender.com/user-api/add-comment/${thoughtId}`, newCommentObj);
+        await axios.post(`https://dotthoughts-backend.onrender.com/user-api/add-comment/${thoughtId}`, newCommentObj);
         setNewComment('');
       } catch (err) {
         console.error('Error adding comment:', err);
@@ -102,7 +102,7 @@ function ThoughtCard({
 
   async function handleDelete() {
     try {
-      const res = await axiosWithToken.delete(`https://dotthoughts-backend.onrender.com/user-api/delete-thought/${thoughtId}`);
+      const res = await axios.delete(`https://dotthoughts-backend.onrender.com/user-api/delete-thought/${thoughtId}`);
       console.log(res.data);
       onDelete(); // Call onDelete prop when the thought is deleted
     } catch (err) {
