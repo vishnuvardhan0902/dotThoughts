@@ -44,35 +44,43 @@ function ThoughtCard({
     }
   }, [user, thoughtId]);
 
-  async function handleLikeToggle() {
-    try {
-      if (isLiked) {
-        await axiosWithToken.post(`http://localhost:4000/user-api/unlike-thought/${thoughtId}`, {
-          username: user.username,
-        });
-        setLikesCount((prev) => prev - 1);
-        setIsLiked(false);
-
-        setUser((prevUser) => ({
-          ...prevUser,
-          likedThoughtsId: prevUser.likedThoughtsId.filter((id) => id !== thoughtId),
-        }));
-      } else {
-        await axiosWithToken.post(`http://localhost:4000/user-api/like-thought/${thoughtId}`, {
-          username: user.username,
-        });
-        setLikesCount((prev) => prev + 1);
-        setIsLiked(true);
-
-        setUser((prevUser) => ({
-          ...prevUser,
-          likedThoughtsId: [...prevUser.likedThoughtsId, thoughtId],
-        }));
-      }
-    } catch (err) {
-      console.error('Error updating like:', err);
+ async function handleLikeToggle() {
+  try {
+    
+    if (!user || !Array.isArray(user.likedThoughtsId)) {
+      console.error('User data is not properly initialized.');
+      return;
     }
+
+    if (isLiked) {
+      await axiosWithToken.post(`http://localhost:4000/user-api/unlike-thought/${thoughtId}`, {
+        username: user.username,
+      });
+      
+      setLikesCount((prev) => prev - 1);
+      setIsLiked(false);
+
+      setUser((prevUser) => ({
+        ...prevUser,
+        likedThoughtsId: prevUser.likedThoughtsId.filter((id) => id !== thoughtId),
+      }));
+    } else {
+      await axiosWithToken.post(`http://localhost:4000/user-api/like-thought/${thoughtId}`, {
+        username: user.username,
+      });
+      // console.log(user)
+      setLikesCount((prev) => prev + 1);
+      setIsLiked(true);
+
+      setUser((prevUser) => ({
+        ...prevUser,
+        likedThoughtsId: [...(prevUser.likedThoughtsId || []), thoughtId],
+      }));
+    }
+  } catch (err) {
+    console.error('Error updating like:', err);
   }
+}
 
   async function addComment() {
     if (newComment.trim()) {

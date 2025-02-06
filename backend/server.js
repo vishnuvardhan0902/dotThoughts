@@ -11,22 +11,24 @@ require('dotenv').config()
 app.use(exp.json())
 // import mongo 
 // connection to mongo db server
-const mc = require('mongodb').MongoClient
-mc.connect('mongodb://127.0.0.1:27017')
-.then(client=>{
-    //db object
-    const thoughtsdb=client.db('dotThoughts')
-    //get collection object
-    const userCollection=thoughtsdb.collection('userCollection')
-    const thoughtsCollection=thoughtsdb.collection('thoughtsCollection')
-    
-    //share collection obj with app
-    app.set('userCollection',userCollection)
-    app.set('thoughtsCollection',thoughtsCollection)
-    console.log('db connection success')
+require('dotenv').config(); // Load environment variables
+const mc = require('mongodb').MongoClient;
 
-})
-.catch(err=>console.log('error occered in db connection',err))
+const uri = process.env.MONGO_URI || '';
+
+mc.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(client => {
+    const thoughtsdb = client.db('dotThoughts');
+    const userCollection = thoughtsdb.collection('userCollection');
+    const thoughtsCollection = thoughtsdb.collection('thoughtsCollection');
+
+    app.set('userCollection', userCollection);
+    app.set('thoughtsCollection', thoughtsCollection);
+    
+    console.log('DB connection success');
+  })
+  .catch(err => console.log('Error occurred in DB connection:', err));
+
 // import user-api
 const userApp = require('./api/user-api')
 // if url is user-api sending the api request to user-api 

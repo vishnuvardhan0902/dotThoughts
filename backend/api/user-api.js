@@ -49,7 +49,7 @@ userApp.post('/login',async(req,res)=>{
                 const isValidPassword = await bcryptjs.compare(user.password,dbUser.password);
                 if (isValidPassword){
                     const token = jwt.sign({username:dbUser.username},process.env.SECRET_KEY,{
-                        expiresIn:'600s'
+                        expiresIn:'6s'
                         })
                         res.send({
                             status:"success",
@@ -204,7 +204,7 @@ userApp.post('/create-thought',async(req,res)=>{
 
 // user add comment on a thought
 
-userApp.post('/add-comment/:thoughtId',verifyToken,async(req,res)=>{
+userApp.post('/add-comment/:thoughtId',async(req,res)=>{
     const comment = req.body;
     const thoughtIdFromUrl = req.params.thoughtId;
     const final_result = await thoughtsCollection.updateOne({thoughtId:thoughtIdFromUrl},{$addToSet:{comments:comment}});
@@ -233,7 +233,7 @@ userApp.get('/get-comments/:thoughtId',async(req,res)=>{
 
 
 //add a like to a thought
-userApp.post('/like-thought/:thoughtId',verifyToken, async (req, res) => {
+userApp.post('/like-thought/:thoughtId', async (req, res) => {
     const { thoughtId } = req.params;
     const { username } = req.body;
     console.log(username)
@@ -244,7 +244,7 @@ userApp.post('/like-thought/:thoughtId',verifyToken, async (req, res) => {
     });
 
 // remove the like of a thought
-userApp.post('/unlike-thought/:thoughtId',verifyToken, async (req, res) => {
+userApp.post('/unlike-thought/:thoughtId', async (req, res) => {
     try {
         const { thoughtId } = req.params;
         const { username } = req.body;

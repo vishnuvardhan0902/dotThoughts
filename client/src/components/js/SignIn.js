@@ -22,13 +22,14 @@ function SignIn() {
         setInvalid_password((prev) => prev + 1); // Increment invalid attempts
         alert(response.data.message); // Display error from server
       } else {
-        // Save token and user info
-        localStorage.setItem("token", response.data.token);
-        localStorage.setItem("user", JSON.stringify(response.data.user));
+        
         try{
           const res = await axios.get(`http://localhost:4000/user-api/user/${userCredentials.username}`);
           setUser(res.data.user);
-          console.log(res.data.user)
+          // Save token and user info
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+          // console.log(res.data.user)
         }
         catch(err){
           console.log(err)
