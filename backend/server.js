@@ -1,8 +1,15 @@
 // import expresss module(server)
 const exp = require('express')
 const app = exp();
-const path = require('path')
+const path = require('path');
+const cors = require("cors");
 
+// Allow requests from your frontend
+app.use(cors({
+    origin: "https://dotthoughts-client.onrender.com",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true // Enable if using cookies or authentication
+}));
 //deploy react build in server
 app.use(exp.static(path.join(__dirname,'../client/build')))
 // process.env.
