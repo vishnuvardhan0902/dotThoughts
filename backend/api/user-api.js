@@ -49,7 +49,7 @@ userApp.post('/login',async(req,res)=>{
                 const isValidPassword = await bcryptjs.compare(user.password,dbUser.password);
                 if (isValidPassword){
                     const token = jwt.sign({username:dbUser.username},process.env.SECRET_KEY,{
-                        expiresIn:'6s'
+                        expiresIn:'600s'
                         })
                         res.send({
                             status:"success",
