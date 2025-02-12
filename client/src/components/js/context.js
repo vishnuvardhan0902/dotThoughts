@@ -7,12 +7,12 @@ const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [JwtToken, setToken] = useState("");
 
-  // useEffect(() => {
-  //   const savedUser = localStorage.getItem('user');
-  //   if (savedUser) {
-  //     setUser(JSON.parse(savedUser));
-  //   }
-  // }, []);
+  useEffect(() => {
+    const savedUser = localStorage.getItem('user');
+    if (savedUser) {
+      setUser(JSON.parse(savedUser));
+    }
+  }, []);
   const thoughts = () => {
     axios.get("/thoughts").then((response) => {
       console.log(response);
