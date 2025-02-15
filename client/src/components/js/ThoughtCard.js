@@ -85,19 +85,16 @@ function ThoughtCard({
     }
   }
 
-  function toggleCommentBox() {
+  async function toggleCommentBox() {
     setIsVisibleOpinionBox((prev) => !prev);
-    useEffect(() => {
-      async function fetchComments() {
+    
         try {
           const res = await axios.get(`https://dotthoughts-backend.onrender.com/user-api/get-comments/${thoughtId}`);
           setCommentList(res.data.comments);
         } catch (err) {
           console.error('Error fetching comments:', err);
         }
-      }
-      fetchComments();
-    }, [thoughtId]);
+    
   
   }
 
