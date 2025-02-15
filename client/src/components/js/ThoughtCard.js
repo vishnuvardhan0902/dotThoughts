@@ -26,17 +26,6 @@ function ThoughtCard({
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    async function fetchComments() {
-      try {
-        const res = await axios.get(`https://dotthoughts-backend.onrender.com/user-api/get-comments/${thoughtId}`);
-        setCommentList(res.data.comments);
-      } catch (err) {
-        console.error('Error fetching comments:', err);
-      }
-    }
-    fetchComments();
-  }, [thoughtId]);
 
   useEffect(() => {
     if (user?.likedThoughtsId?.includes(thoughtId)) {
@@ -98,6 +87,18 @@ function ThoughtCard({
 
   function toggleCommentBox() {
     setIsVisibleOpinionBox((prev) => !prev);
+    useEffect(() => {
+      async function fetchComments() {
+        try {
+          const res = await axios.get(`https://dotthoughts-backend.onrender.com/user-api/get-comments/${thoughtId}`);
+          setCommentList(res.data.comments);
+        } catch (err) {
+          console.error('Error fetching comments:', err);
+        }
+      }
+      fetchComments();
+    }, [thoughtId]);
+  
   }
 
   async function handleDelete() {
