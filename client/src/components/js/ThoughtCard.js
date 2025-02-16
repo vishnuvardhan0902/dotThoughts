@@ -102,8 +102,14 @@ function ThoughtCard({
     try {
       const res = await axios.delete(`https://dotthoughts-backend.onrender.com/user-api/delete-thought/${thoughtId}`);
       console.log(res.data);
-      onDelete(); // Call onDelete prop when the thought is deleted
-    } catch (err) {
+      if (res.data.status = "success"){
+        window.location.reload();
+      }
+      else{
+        alert('something went wrong! please try deleting after some time.')
+      }
+    } 
+    catch (err) {
       console.error(err);
     }
   }
