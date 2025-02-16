@@ -5,6 +5,7 @@ function UserProfile() {
     const [thoughts, setThoughts] = useState([]);
     const { user, setUser } = useContext(UserContext);
     const [menuOpen, setMenuOpen] = useState(false);
+
     useEffect(() => {
     const fetchThoughts = async () => {
         try {
@@ -27,7 +28,10 @@ function UserProfile() {
 
     fetchThoughts();
     }, []);
-
+    
+    const handleThoughtDelete = (deletedThoughtId) => {
+      setThoughts((prevThoughts) => prevThoughts.filter(thought => thought.thoughtId !== deletedThoughtId));
+    };
   return (
     <div className="home-page">
       <div>
@@ -45,6 +49,7 @@ function UserProfile() {
             postImage={thought.postImage}
             comments={thought.comments}
             likes={thought.likes}
+            onDelete={handleThoughtDelete}
           />
         ))}
       </div>

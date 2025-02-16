@@ -15,7 +15,7 @@ function ThoughtCard({
   comments = [],
   likes,
   onClick,
-  onDelete, // Added onDelete prop
+  onDelete
 }) {
   const [isVisibleOpinionBox, setIsVisibleOpinionBox] = useState(false);
   const [newComment, setNewComment] = useState('');
@@ -103,7 +103,7 @@ function ThoughtCard({
       const res = await axios.delete(`https://dotthoughts-backend.onrender.com/user-api/delete-thought/${thoughtId}`);
       console.log(res.data);
       if (res.data.status = "success"){
-        window.location.reload();
+        onDelete(thoughtId);
       }
       else{
         alert('something went wrong! please try deleting after some time.')
