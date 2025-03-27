@@ -1,14 +1,15 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../css/NavBar.css';
 import { UserContext } from './context';
 
 function NavBar() {
   const { user, setUser } = useContext(UserContext);
   const [menuOpen, setMenuOpen] = useState(false);
-
+  const navigate = useNavigate(); 
   function handleLogout() {
     setUser(null);
+    navigate("/home");
   }
 
   return (
