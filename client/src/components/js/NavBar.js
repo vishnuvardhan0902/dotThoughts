@@ -28,7 +28,8 @@ function NavBar() {
           <>
             <li><Link to="/create-thought" className="nav-link">Drop Thought</Link></li>
             <li><Link to="/user-profile" className="nav-link">Profile</Link></li>
-            <li><span className="nav-link" onClick={handleLogout}>Logout</span></li>
+            <li><Link to="/home" className="nav-link" onClick={handleLogout}>Logout</Link></li>
+            {/* <li><span className="nav-link" onClick={handleLogout}>Logout</span></li> */}
           </>
         )}
       </ul>
