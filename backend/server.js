@@ -6,7 +6,7 @@ const cors = require("cors");
 
 // Allow requests from your frontend
 app.use(cors({
-    origin: "https://dotthoughts-client.onrender.com",
+    origin: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true // Enable if using cookies or authentication
 }));
