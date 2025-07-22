@@ -5,7 +5,9 @@ import { UserContext } from './context';
 import axios from 'axios';
 import '../css/CreateThought.css'; // Import the updated CSS
 
-const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dadytm6jv/image/upload';
+const IMG_CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dadytm6jv/image/upload';
+const VIDEO_CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dadytm6jv/video/upload'
+
 const UPLOAD_PRESET = 'cloud_dotThoughts';
 
 function CreateThought() {
@@ -22,9 +24,10 @@ function CreateThought() {
     if (!file) return;
 
     // Validate file type and size (e.g., max 15 MB)
+    const videoType = ['video/mp4'];
     const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'video/mp4'];
     const maxFileSize = 15 * 1024 * 1024; // 15 MB
-
+    
     if (!allowedTypes.includes(file.type)) {
       alert('Unsupported file type. Please upload an image or video.');
       return;
@@ -37,7 +40,7 @@ function CreateThought() {
     const data = new FormData();
     data.append('file', file);
     data.append('upload_preset', 'cloud_dotThoughts');
-
+    const CLOUDINARY_URL = videoType.includes(file.type)?VIDEO_CLOUDINARY_URL:IMG_CLOUDINARY_URL;
     setIsUploading(true);
     try {
       const res = await axios.post(CLOUDINARY_URL, data);
